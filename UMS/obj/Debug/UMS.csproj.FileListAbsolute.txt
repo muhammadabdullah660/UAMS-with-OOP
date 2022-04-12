@@ -1,0 +1,7 @@
+D:\UET\Second Semester\OOP Lab\Week4\UMS\UMS\bin\Debug\UMS.exe.config
+D:\UET\Second Semester\OOP Lab\Week4\UMS\UMS\bin\Debug\UMS.exe
+D:\UET\Second Semester\OOP Lab\Week4\UMS\UMS\bin\Debug\UMS.pdb
+D:\UET\Second Semester\OOP Lab\Week4\UMS\UMS\obj\Debug\UMS.csproj.AssemblyReference.cache
+D:\UET\Second Semester\OOP Lab\Week4\UMS\UMS\obj\Debug\UMS.csproj.CoreCompileInputs.cache
+D:\UET\Second Semester\OOP Lab\Week4\UMS\UMS\obj\Debug\UMS.exe
+D:\UET\Second Semester\OOP Lab\Week4\UMS\UMS\obj\Debug\UMS.pdb
