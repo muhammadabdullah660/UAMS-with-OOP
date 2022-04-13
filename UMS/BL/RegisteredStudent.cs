@@ -10,10 +10,17 @@ namespace UMS.BL
     {
         public Student s;
         public DegreeProgram d;
+        public static List<RegisteredStudent> registeredStudentsList = new List<RegisteredStudent>();
+
         public RegisteredStudent (Student s , DegreeProgram d)
         {
             this.s = s;
             this.d = d;
+        }
+
+        public static void addIntoList (RegisteredStudent s)
+        {
+            registeredStudentsList.Add(s);
         }
     }
 }

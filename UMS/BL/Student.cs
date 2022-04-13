@@ -17,6 +17,8 @@ namespace UMS.BL
         public List<Subject> regSubject;
         public bool gotAdmission;
         public DegreeProgram admPref;
+        public static List<Student> studentList = new List<Student>();
+
 
 
         public Student (string name , int age , int fscMarks , int matricMarks , int ecatMarks)
@@ -51,9 +53,17 @@ namespace UMS.BL
         }
         public int calculateFee ()
         {
-            int studentFee = getCreditHours() * 3000;
+            int fee = 0;
+            if (gotAdmission)
+            {
+                foreach (Subject sub in regSubject)
+                {
+                    fee += sub.subjectFee;
+                }
+            }
+            // int studentFee = getCreditHours() * 3000;
             //   Console.WriteLine(studentFee);
-            return studentFee;
+            return fee;
         }
         public double calculateMerit ()
         {
@@ -64,23 +74,20 @@ namespace UMS.BL
 
             return merit;
         }
-        public void regStudentSubject (Subject s)
+        public bool regStudentSubject (Subject s)
         {
             int stCH = getCreditHours();
-            if (gotAdmission && stCH + s.creditHours <= 9)
+            if (gotAdmission && preferences[0].isSubjectExist(s) && stCH + s.creditHours <= 9)
             {
-                for (int i = 0 ; i < preferences[0].subjectsList.Count ; i++)
-                {
-                    if (s.code == preferences[0].subjectsList[i].code)
-                    {
-                        regSubject.Add(s);
-                    }
-                }
+                regSubject.Add(s);
+                return true;
             }
-            else
-            {
-                Console.WriteLine("A student cannot have more than 9 subjects or wrong code");
-            }
+            return false;
+            /* else
+             {
+                 //  Console.WriteLine("A student cannot have more than 9 subjects or wrong code");
+
+             }*/
         }
         public bool isGotAdmission ()
         {
@@ -98,6 +105,22 @@ namespace UMS.BL
             }
             admPref = preferences[0];
             return false;
+        }
+
+        public static Student isStudentPresent (string name)
+        {
+            foreach (Student s in studentList)
+            {
+                if (name == s.name && s.isGotAdmission())
+                {
+                    return s;
+                }
+            }
+            return null;
+        }
+        public static void addStudentIntoList (Student s)
+        {
+            studentList.Add(s);
         }
     }
 }

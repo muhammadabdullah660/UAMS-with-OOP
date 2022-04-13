@@ -14,12 +14,19 @@ namespace UMS.BL
         public double merit;
         public int seats;
         public List<Student> regStudentsList;
+        public static List<DegreeProgram> degreeProgList = new List<DegreeProgram>();
+
         public DegreeProgram (string degreeTitle , double degreeDuration)
         {
             this.degreeTitle = degreeTitle;
             this.degreeDuration = degreeDuration;
             subjectsList = new List<Subject>();
 
+        }
+
+        public static void addDegreeIntoList (DegreeProgram d)
+        {
+            degreeProgList.Add(d);
         }
         public void addSeatsAndMerit (int seats , double merit)
         {
@@ -35,18 +42,41 @@ namespace UMS.BL
             }
             return count;
         }
-        public void addSubject (Subject s)
+        public bool addSubject (Subject s)
         {
             int creditHrs = calculateCreditHours();
             if (creditHrs + s.creditHours <= 20)
             {
                 subjectsList.Add(s);
+                return true;
             }
             else
             {
-                Console.WriteLine("Limit Exceeded");
+                //  Console.WriteLine("Limit Exceeded");
+                return false;
             }
         }
-
+        public bool isSubjectExist (Subject s)
+        {
+            foreach (Subject sub in subjectsList)
+            {
+                if (s.code == sub.code)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static DegreeProgram addPrefOfStudent (Student s , string degreeName)
+        {
+            foreach (DegreeProgram item in degreeProgList)
+            {
+                if (item.degreeTitle == degreeName)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
     }
 }

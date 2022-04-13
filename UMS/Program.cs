@@ -9,10 +9,6 @@ namespace UMS
 {
     class Program
     {
-        static List<Student> studentList = new List<Student>();
-        static List<DegreeProgram> degreeProgList = new List<DegreeProgram>();
-        static List<RegisteredStudent> registeredStudentsList = new List<RegisteredStudent>();
-        static List<Subject> subjectsList = new List<Subject>();
         static void Main ()
         {
             int op = 0;
@@ -23,15 +19,14 @@ namespace UMS
                 if (op == 1)
                 {
                     clearScreen();
-                    if (degreeProgList.Count > 0)
-                    {
-                        studentList.Add(takInputStudent());
-                    }
+
+                    Student.addStudentIntoList(takInputStudent());
+
                 }
                 else if (op == 2)
                 {
                     clearScreen();
-                    degreeProgList.Add(takInputDegreeProgram());
+                    DegreeProgram.addDegreeIntoList(takInputDegreeProgram());
                 }
                 else if (op == 3)
                 {
@@ -90,6 +85,7 @@ namespace UMS
             Console.ReadKey();
             Console.Clear();
         }
+
         static Student takInputStudent ()
         {
             string name;
@@ -110,28 +106,37 @@ namespace UMS
             Student s = new Student(name , age , fscMarks , matricMarks , ecatMarks);
             // Show all programs
             Console.WriteLine("Available Programs:");
-            foreach (DegreeProgram item in degreeProgList)
+            foreach (DegreeProgram item in DegreeProgram.degreeProgList)
             {
                 Console.WriteLine(item.degreeTitle);
             }
 
+            addPref(s);
+            return s;
+
+
+        }
+        static void addPref (Student s)
+        {
             Console.WriteLine("Enter How Many Preference to Enter:");
             int prefCount = int.Parse(Console.ReadLine());
             for (int i = 0 ; i < prefCount ; i++)
             {
                 Console.WriteLine("Enter Degree Name:");
                 string degreeName = (Console.ReadLine());
-                foreach (DegreeProgram item in degreeProgList)
+                DegreeProgram d = DegreeProgram.addPrefOfStudent(s , degreeName);
+                if (d != null)
                 {
-                    if (item.degreeTitle == degreeName)
-                    {
-                        s.addPreference(item);
-                    }
+                    s.addPreference(d);
+                    Console.WriteLine("Preference added");
                 }
+                else
+                {
+                    Console.WriteLine("Wrong Entry");
+                    i--;
+                }
+
             }
-            return s;
-
-
         }
         static DegreeProgram takInputDegreeProgram ()
         {
@@ -144,7 +149,7 @@ namespace UMS
             degreeDuration = double.Parse(Console.ReadLine());
             // Object
             DegreeProgram d = new DegreeProgram(degreeTitle , degreeDuration);
-            // Behavior
+            // Behaviors
             Console.WriteLine("Enter Seats for degree:");
             degreeSeats = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Merit for degree:");
@@ -172,18 +177,18 @@ namespace UMS
             int fee = int.Parse(Console.ReadLine());
             Subject s = new Subject(code , type , ch , fee);
             d.addSubject(s);
-            subjectsList.Add(s);
+            Subject.addSubjectIntoList(s);
         }
 
         static void showMerit ()
         {
 
-            foreach (Student item in studentList)
+            foreach (Student item in Student.studentList)
             {
                 if (item.isGotAdmission())
                 {
                     RegisteredStudent r = new RegisteredStudent(item , item.admPref);
-                    registeredStudentsList.Add(r);
+                    RegisteredStudent.addIntoList(r);
                     Console.WriteLine($"{item.name} GOT ADMISSION IN {item.admPref.degreeTitle}");
                 }
                 else
@@ -195,12 +200,12 @@ namespace UMS
         }
         static void showRegStudents ()
         {
-            foreach (Student item in studentList)
+            /*foreach (Student item in Student.studentList)
             {
                 Console.WriteLine($"{item.name} ");
-            }
+            }*/
             Console.WriteLine("NAME\tFSC\tECAT\tAGE");
-            foreach (RegisteredStudent item in registeredStudentsList)
+            foreach (RegisteredStudent item in RegisteredStudent.registeredStudentsList)
             {
                 Console.WriteLine($"{item.s.name}\t{item.s.fscMarks}\t{item.s.ecatMarks}\t{item.s.age}");
 
@@ -211,7 +216,7 @@ namespace UMS
             Console.WriteLine("Enter Degree Name");
             string degreeName = Console.ReadLine();
             Console.WriteLine("NAME\tFSC\tECAT\tAGE");
-            foreach (RegisteredStudent item in registeredStudentsList)
+            foreach (RegisteredStudent item in RegisteredStudent.registeredStudentsList)
             {
                 if (degreeName == item.d.degreeTitle)
                 {
@@ -224,23 +229,22 @@ namespace UMS
         {
             Console.WriteLine("Enter Your Name");
             string name = Console.ReadLine();
-            Console.WriteLine("Enter Subject Code");
-            string code = Console.ReadLine();
-
-            foreach (Student itemx in studentList)
+            Console.WriteLine("Enter How Many Subjects You want To Register");
+            int count = int.Parse(Console.ReadLine());
+            for (int i = 0 ; i < count ; i++)
             {
-                if (name == itemx.name)
+                Console.WriteLine("Enter Subject Code");
+                string code = Console.ReadLine();
+                Student stu = Student.isStudentPresent(name);
+                bool registered = Subject.isSubjectRegistered(stu , code);
+                if (registered)
                 {
-                    foreach (Subject item in subjectsList)
-                    {
-                        if (item.code == code)
-                        {
-                            itemx.regStudentSubject(item);
-                            Console.WriteLine("Subject Registered");
-                            break;
-                        }
-                    }
-                    break;
+                    Console.WriteLine("Subject Registered");
+                }
+                else
+                {
+                    Console.WriteLine("Enter Valid Code");
+                    i--;
                 }
 
             }
@@ -249,7 +253,7 @@ namespace UMS
         {
             int fee;
             Console.WriteLine("NAME\tFSC\tECAT\tAGE\tTotal Fee");
-            foreach (RegisteredStudent item in registeredStudentsList)
+            foreach (RegisteredStudent item in RegisteredStudent.registeredStudentsList)
             {
                 fee = item.s.calculateFee();
                 Console.WriteLine($"{item.s.name}\t{item.s.fscMarks}\t{item.s.ecatMarks}\t{item.s.age}\t{fee}");
