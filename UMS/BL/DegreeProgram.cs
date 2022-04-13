@@ -16,6 +16,7 @@ namespace UMS.BL
         public List<Student> regStudentsList;
         public static List<DegreeProgram> degreeProgList = new List<DegreeProgram>();
 
+
         public DegreeProgram (string degreeTitle , double degreeDuration)
         {
             this.degreeTitle = degreeTitle;

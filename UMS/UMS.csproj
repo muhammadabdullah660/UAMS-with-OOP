@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\DegreeProgram.cs" />
-    <Compile Include="BL\RegisteredStudent.cs" />
     <Compile Include="BL\Student.cs" />
     <Compile Include="BL\Subject.cs" />
     <Compile Include="Program.cs" />

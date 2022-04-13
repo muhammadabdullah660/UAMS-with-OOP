@@ -13,11 +13,14 @@ namespace UMS.BL
         public int fscMarks;
         public int matricMarks;
         public int ecatMarks;
+        public double merit;
         public List<DegreeProgram> preferences;
         public List<Subject> regSubject;
-        public bool gotAdmission;
         public DegreeProgram admPref;
+        public DegreeProgram regDegree;
         public static List<Student> studentList = new List<Student>();
+        public static List<Student> sortedStudentList = new List<Student>();
+        public static List<Student> registeredStudentsList = new List<Student>();
 
 
 
@@ -30,7 +33,7 @@ namespace UMS.BL
             this.ecatMarks = ecatMarks;
             preferences = new List<DegreeProgram>();
             regSubject = new List<Subject>();
-            gotAdmission = false;
+            regDegree = null;
         }
         public void addPreference (DegreeProgram d)
         {
@@ -54,7 +57,7 @@ namespace UMS.BL
         public int calculateFee ()
         {
             int fee = 0;
-            if (gotAdmission)
+            if (regDegree != null)
             {
                 foreach (Subject sub in regSubject)
                 {
@@ -69,15 +72,16 @@ namespace UMS.BL
         {
             /* Console.WriteLine(fscMarks);
              Console.WriteLine(ecatMarks);*/
-            double merit = (((fscMarks / 1100F) * 0.45F) + ((ecatMarks / 400F) * 0.55F)) * 100F;
+            merit = (((fscMarks / 1100F) * 0.45F) + ((ecatMarks / 400F) * 0.55F)) * 100F;
             Console.WriteLine(merit);
 
             return merit;
         }
+
         public bool regStudentSubject (Subject s)
         {
             int stCH = getCreditHours();
-            if (gotAdmission && preferences[0].isSubjectExist(s) && stCH + s.creditHours <= 9)
+            if (regDegree != null && preferences[0].isSubjectExist(s) && stCH + s.creditHours <= 9)
             {
                 regSubject.Add(s);
                 return true;
@@ -99,14 +103,22 @@ namespace UMS.BL
                     DegreeProgram temp = preferences[0];
                     preferences[0] = preferences[i];
                     admPref = preferences[0];
-                    gotAdmission = true;
+                    regDegree = preferences[0];
+                    preferences[0].seats--;
                     return true;
                 }
             }
             admPref = preferences[0];
             return false;
         }
-
+        public static void sortStudentsByMerit ()
+        {
+            foreach (Student s in registeredStudentsList)
+            {
+                s.calculateMerit();
+            }
+            sortedStudentList = registeredStudentsList.OrderByDescending(o => o.merit).ToList();
+        }
         public static Student isStudentPresent (string name)
         {
             foreach (Student s in studentList)
@@ -121,6 +133,10 @@ namespace UMS.BL
         public static void addStudentIntoList (Student s)
         {
             studentList.Add(s);
+        }
+        public static void addIntoRegStuList (Student s)
+        {
+            registeredStudentsList.Add(s);
         }
     }
 }

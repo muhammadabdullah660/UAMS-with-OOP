@@ -187,8 +187,7 @@ namespace UMS
             {
                 if (item.isGotAdmission())
                 {
-                    RegisteredStudent r = new RegisteredStudent(item , item.admPref);
-                    RegisteredStudent.addIntoList(r);
+                    Student.addIntoRegStuList(item);
                     Console.WriteLine($"{item.name} GOT ADMISSION IN {item.admPref.degreeTitle}");
                 }
                 else
@@ -205,10 +204,9 @@ namespace UMS
                 Console.WriteLine($"{item.name} ");
             }*/
             Console.WriteLine("NAME\tFSC\tECAT\tAGE");
-            foreach (RegisteredStudent item in RegisteredStudent.registeredStudentsList)
+            foreach (Student s in Student.registeredStudentsList)
             {
-                Console.WriteLine($"{item.s.name}\t{item.s.fscMarks}\t{item.s.ecatMarks}\t{item.s.age}");
-
+                Console.WriteLine($"{s.name}\t{s.fscMarks}\t{s.ecatMarks}\t{s.age}");
             }
         }
         static void showRegStudentsSpecificProg ()
@@ -216,11 +214,11 @@ namespace UMS
             Console.WriteLine("Enter Degree Name");
             string degreeName = Console.ReadLine();
             Console.WriteLine("NAME\tFSC\tECAT\tAGE");
-            foreach (RegisteredStudent item in RegisteredStudent.registeredStudentsList)
+            foreach (Student s in Student.registeredStudentsList)
             {
-                if (degreeName == item.d.degreeTitle)
+                if (degreeName == s.regDegree.degreeTitle)
                 {
-                    Console.WriteLine($"{item.s.name}\t{item.s.fscMarks}\t{item.s.ecatMarks}\t{item.s.age}");
+                    Console.WriteLine($"{s.name}\t{s.fscMarks}\t{s.ecatMarks}\t{s.age}");
                 }
 
             }
@@ -246,17 +244,17 @@ namespace UMS
                     Console.WriteLine("Enter Valid Code");
                     i--;
                 }
-
             }
+
         }
         static void showWithFee ()
         {
             int fee;
             Console.WriteLine("NAME\tFSC\tECAT\tAGE\tTotal Fee");
-            foreach (RegisteredStudent item in RegisteredStudent.registeredStudentsList)
+            foreach (Student s in Student.registeredStudentsList)
             {
-                fee = item.s.calculateFee();
-                Console.WriteLine($"{item.s.name}\t{item.s.fscMarks}\t{item.s.ecatMarks}\t{item.s.age}\t{fee}");
+                fee = s.calculateFee();
+                Console.WriteLine($"{s.name}\t{s.fscMarks}\t{s.ecatMarks}\t{s.age}\t{fee}");
 
             }
         }

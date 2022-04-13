@@ -5,3 +5,7 @@ D:\UET\Second Semester\OOP Lab\Week4\UMS\UMS\obj\Debug\UMS.csproj.AssemblyRefere
 D:\UET\Second Semester\OOP Lab\Week4\UMS\UMS\obj\Debug\UMS.csproj.CoreCompileInputs.cache
 D:\UET\Second Semester\OOP Lab\Week4\UMS\UMS\obj\Debug\UMS.exe
 D:\UET\Second Semester\OOP Lab\Week4\UMS\UMS\obj\Debug\UMS.pdb
+D:\UET\Second Semester\OOP Lab\Week5\UAMS\UMS\obj\Debug\UMS.csproj.AssemblyReference.cache
+D:\UET\Second Semester\OOP Lab\Week5\UAMS\UMS\obj\Debug\UMS.csproj.CoreCompileInputs.cache
+D:\UET\Second Semester\OOP Lab\Week5\UAMS\UMS\obj\Debug\UMS.exe
+D:\UET\Second Semester\OOP Lab\Week5\UAMS\UMS\obj\Debug\UMS.pdb
