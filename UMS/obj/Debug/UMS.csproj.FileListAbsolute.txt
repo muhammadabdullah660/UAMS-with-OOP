@@ -9,3 +9,6 @@ D:\UET\Second Semester\OOP Lab\Week5\UAMS\UMS\obj\Debug\UMS.csproj.AssemblyRefer
 D:\UET\Second Semester\OOP Lab\Week5\UAMS\UMS\obj\Debug\UMS.csproj.CoreCompileInputs.cache
 D:\UET\Second Semester\OOP Lab\Week5\UAMS\UMS\obj\Debug\UMS.exe
 D:\UET\Second Semester\OOP Lab\Week5\UAMS\UMS\obj\Debug\UMS.pdb
+D:\UET\Second Semester\OOP Lab\Week5\UAMS\UMS\bin\Debug\UMS.exe.config
+D:\UET\Second Semester\OOP Lab\Week5\UAMS\UMS\bin\Debug\UMS.exe
+D:\UET\Second Semester\OOP Lab\Week5\UAMS\UMS\bin\Debug\UMS.pdb

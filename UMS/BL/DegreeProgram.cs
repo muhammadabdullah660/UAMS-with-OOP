@@ -14,7 +14,6 @@ namespace UMS.BL
         public double merit;
         public int seats;
         public List<Student> regStudentsList;
-        public static List<DegreeProgram> degreeProgList = new List<DegreeProgram>();
 
 
         public DegreeProgram (string degreeTitle , double degreeDuration)
@@ -25,10 +24,6 @@ namespace UMS.BL
 
         }
 
-        public static void addDegreeIntoList (DegreeProgram d)
-        {
-            degreeProgList.Add(d);
-        }
         public void addSeatsAndMerit (int seats , double merit)
         {
             this.seats = seats;
@@ -68,16 +63,6 @@ namespace UMS.BL
             }
             return false;
         }
-        public static DegreeProgram addPrefOfStudent (Student s , string degreeName)
-        {
-            foreach (DegreeProgram item in degreeProgList)
-            {
-                if (item.degreeTitle == degreeName)
-                {
-                    return item;
-                }
-            }
-            return null;
-        }
+
     }
 }

@@ -46,8 +46,14 @@
     <Compile Include="BL\DegreeProgram.cs" />
     <Compile Include="BL\Student.cs" />
     <Compile Include="BL\Subject.cs" />
+    <Compile Include="DL\DegreeProgramDL.cs" />
+    <Compile Include="DL\StudentDL.cs" />
+    <Compile Include="DL\SubjectDL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\DegreeProgramUI.cs" />
+    <Compile Include="UI\StudentUI.cs" />
+    <Compile Include="UI\SubjectUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

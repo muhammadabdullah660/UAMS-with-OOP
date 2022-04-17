@@ -18,9 +18,7 @@ namespace UMS.BL
         public List<Subject> regSubject;
         public DegreeProgram admPref;
         public DegreeProgram regDegree;
-        public static List<Student> studentList = new List<Student>();
-        public static List<Student> sortedStudentList = new List<Student>();
-        public static List<Student> registeredStudentsList = new List<Student>();
+
 
 
 
@@ -73,7 +71,7 @@ namespace UMS.BL
             /* Console.WriteLine(fscMarks);
              Console.WriteLine(ecatMarks);*/
             merit = (((fscMarks / 1100F) * 0.45F) + ((ecatMarks / 400F) * 0.55F)) * 100F;
-            Console.WriteLine(merit);
+            //            Console.WriteLine(merit);
 
             return merit;
         }
@@ -111,32 +109,7 @@ namespace UMS.BL
             admPref = preferences[0];
             return false;
         }
-        public static void sortStudentsByMerit ()
-        {
-            foreach (Student s in registeredStudentsList)
-            {
-                s.calculateMerit();
-            }
-            sortedStudentList = registeredStudentsList.OrderByDescending(o => o.merit).ToList();
-        }
-        public static Student isStudentPresent (string name)
-        {
-            foreach (Student s in studentList)
-            {
-                if (name == s.name && s.isGotAdmission())
-                {
-                    return s;
-                }
-            }
-            return null;
-        }
-        public static void addStudentIntoList (Student s)
-        {
-            studentList.Add(s);
-        }
-        public static void addIntoRegStuList (Student s)
-        {
-            registeredStudentsList.Add(s);
-        }
+
+
     }
 }

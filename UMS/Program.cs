@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UMS.BL;
+using UMS.UI;
+using UMS.DL;
 
 namespace UMS
 {
@@ -12,6 +14,13 @@ namespace UMS
         static void Main ()
         {
             int op = 0;
+            DegreeProgram d = new DegreeProgram("CS" , 4);
+            Subject s = new Subject("101" , "OOP" , 3 , 3000);
+            d.addSeatsAndMerit(20 , 90);
+            d.addSubject(s);
+            SubjectDL.addSubjectIntoList(s);
+            DegreeProgramDL.addDegreeIntoList(d);
+
             while (op < 8)
             {
                 clearScreen();
@@ -19,43 +28,46 @@ namespace UMS
                 if (op == 1)
                 {
                     clearScreen();
+                    if (DegreeProgramDL.degreeProgList.Count > 0)
+                    {
+                        StudentDL.addStudentIntoList(StudentUI.takeInputStudent());
 
-                    Student.addStudentIntoList(takInputStudent());
+                    }
 
                 }
                 else if (op == 2)
                 {
                     clearScreen();
-                    DegreeProgram.addDegreeIntoList(takInputDegreeProgram());
+                    DegreeProgramDL.addDegreeIntoList(DegreeProgramUI.takeInputDegreeProgram());
                 }
                 else if (op == 3)
                 {
                     clearScreen();
-                    showMerit();
+                    StudentUI.showMerit();
 
                 }
                 else if (op == 4)
                 {
                     clearScreen();
-                    showRegStudents();
+                    StudentUI.showRegStudents();
 
                 }
                 else if (op == 5)
                 {
                     clearScreen();
-                    showRegStudentsSpecificProg();
+                    StudentUI.showRegStudentsSpecificProg();
 
                 }
                 else if (op == 6)
                 {
                     clearScreen();
-                    registerSubject();
+                    StudentUI.registerSubject();
 
                 }
                 else if (op == 7)
                 {
                     clearScreen();
-                    showWithFee();
+                    StudentUI.showWithFee();
 
                 }
             }
@@ -81,182 +93,18 @@ namespace UMS
         }
         static void clearScreen ()
         {
+            //Console.WriteLine(StudentDL.registeredStudentsList.Count);
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             Console.Clear();
         }
 
-        static Student takInputStudent ()
-        {
-            string name;
-            int age;
-            int fscMarks;
-            int matricMarks;
-            int ecatMarks;
-            Console.WriteLine("Enter Student Name:");
-            name = (Console.ReadLine());
-            Console.WriteLine("Enter Student Age:");
-            age = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter FSC Marks:");
-            fscMarks = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Matric Marks:");
-            matricMarks = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter ECAT Marks:");
-            ecatMarks = int.Parse(Console.ReadLine());
-            Student s = new Student(name , age , fscMarks , matricMarks , ecatMarks);
-            // Show all programs
-            Console.WriteLine("Available Programs:");
-            foreach (DegreeProgram item in DegreeProgram.degreeProgList)
-            {
-                Console.WriteLine(item.degreeTitle);
-            }
-
-            addPref(s);
-            return s;
 
 
-        }
-        static void addPref (Student s)
-        {
-            Console.WriteLine("Enter How Many Preference to Enter:");
-            int prefCount = int.Parse(Console.ReadLine());
-            for (int i = 0 ; i < prefCount ; i++)
-            {
-                Console.WriteLine("Enter Degree Name:");
-                string degreeName = (Console.ReadLine());
-                DegreeProgram d = DegreeProgram.addPrefOfStudent(s , degreeName);
-                if (d != null)
-                {
-                    s.addPreference(d);
-                    Console.WriteLine("Preference added");
-                }
-                else
-                {
-                    Console.WriteLine("Wrong Entry");
-                    i--;
-                }
 
-            }
-        }
-        static DegreeProgram takInputDegreeProgram ()
-        {
-            string degreeTitle;
-            double degreeDuration, degreeMerit;
-            int degreeSeats, subCount;
-            Console.WriteLine("Enter Degree Name:");
-            degreeTitle = (Console.ReadLine());
-            Console.WriteLine("Enter Degree Duration:");
-            degreeDuration = double.Parse(Console.ReadLine());
-            // Object
-            DegreeProgram d = new DegreeProgram(degreeTitle , degreeDuration);
-            // Behaviors
-            Console.WriteLine("Enter Seats for degree:");
-            degreeSeats = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Merit for degree:");
-            degreeMerit = double.Parse(Console.ReadLine());
-            d.addSeatsAndMerit(degreeSeats , degreeMerit);
-            // Subjects
-            Console.WriteLine("Enter How many subjects to enter:");
-            subCount = int.Parse(Console.ReadLine());
-            // Subjects List
-            for (int i = 0 ; i < subCount ; i++)
-            {
-                subjectsInfo(d);
-            }
-            return d;
-        }
-        static void subjectsInfo (DegreeProgram d)
-        {
-            Console.WriteLine("Enter Subject Code:");
-            string code = (Console.ReadLine());
-            Console.WriteLine("Enter Subject Type:");
-            string type = (Console.ReadLine());
-            Console.WriteLine("Enter Credit Hours:");
-            int ch = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Subject Fee:");
-            int fee = int.Parse(Console.ReadLine());
-            Subject s = new Subject(code , type , ch , fee);
-            d.addSubject(s);
-            Subject.addSubjectIntoList(s);
-        }
 
-        static void showMerit ()
-        {
 
-            foreach (Student item in Student.studentList)
-            {
-                if (item.isGotAdmission())
-                {
-                    Student.addIntoRegStuList(item);
-                    Console.WriteLine($"{item.name} GOT ADMISSION IN {item.admPref.degreeTitle}");
-                }
-                else
-                {
-                    Console.WriteLine($"{item.name} DID NOT GOT ADMISSION IN {item.admPref.degreeTitle}");
 
-                }
-            }
-        }
-        static void showRegStudents ()
-        {
-            /*foreach (Student item in Student.studentList)
-            {
-                Console.WriteLine($"{item.name} ");
-            }*/
-            Console.WriteLine("NAME\tFSC\tECAT\tAGE");
-            foreach (Student s in Student.registeredStudentsList)
-            {
-                Console.WriteLine($"{s.name}\t{s.fscMarks}\t{s.ecatMarks}\t{s.age}");
-            }
-        }
-        static void showRegStudentsSpecificProg ()
-        {
-            Console.WriteLine("Enter Degree Name");
-            string degreeName = Console.ReadLine();
-            Console.WriteLine("NAME\tFSC\tECAT\tAGE");
-            foreach (Student s in Student.registeredStudentsList)
-            {
-                if (degreeName == s.regDegree.degreeTitle)
-                {
-                    Console.WriteLine($"{s.name}\t{s.fscMarks}\t{s.ecatMarks}\t{s.age}");
-                }
 
-            }
-        }
-        static void registerSubject ()
-        {
-            Console.WriteLine("Enter Your Name");
-            string name = Console.ReadLine();
-            Console.WriteLine("Enter How Many Subjects You want To Register");
-            int count = int.Parse(Console.ReadLine());
-            for (int i = 0 ; i < count ; i++)
-            {
-                Console.WriteLine("Enter Subject Code");
-                string code = Console.ReadLine();
-                Student stu = Student.isStudentPresent(name);
-                bool registered = Subject.isSubjectRegistered(stu , code);
-                if (registered)
-                {
-                    Console.WriteLine("Subject Registered");
-                }
-                else
-                {
-                    Console.WriteLine("Enter Valid Code");
-                    i--;
-                }
-            }
-
-        }
-        static void showWithFee ()
-        {
-            int fee;
-            Console.WriteLine("NAME\tFSC\tECAT\tAGE\tTotal Fee");
-            foreach (Student s in Student.registeredStudentsList)
-            {
-                fee = s.calculateFee();
-                Console.WriteLine($"{s.name}\t{s.fscMarks}\t{s.ecatMarks}\t{s.age}\t{fee}");
-
-            }
-        }
     }
 }
