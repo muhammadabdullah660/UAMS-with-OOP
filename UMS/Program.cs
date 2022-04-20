@@ -13,12 +13,15 @@ namespace UMS
     {
         static void Main ()
         {
+            string subjectPath = "subject.txt";
+            string degreePath = "degree.txt";
+            string studentPath = "student.txt";
             int op = 0;
             DegreeProgram d = new DegreeProgram("CS" , 4);
-            Subject s = new Subject("101" , "OOP" , 3 , 3000);
+            Subject sub = new Subject("101" , "OOP" , 3 , 3000);
             d.addSeatsAndMerit(20 , 90);
-            d.addSubject(s);
-            SubjectDL.addSubjectIntoList(s);
+            d.addSubject(sub);
+            SubjectDL.addSubjectIntoList(sub);
             DegreeProgramDL.addDegreeIntoList(d);
 
             while (op < 8)
@@ -30,7 +33,9 @@ namespace UMS
                     clearScreen();
                     if (DegreeProgramDL.degreeProgList.Count > 0)
                     {
-                        StudentDL.addStudentIntoList(StudentUI.takeInputStudent());
+                        Student s = StudentUI.takeInputStudent();
+                        StudentDL.addStudentIntoList(s);
+                        StudentDL.storeIntoFile(studentPath , s);
 
                     }
 

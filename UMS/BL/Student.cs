@@ -33,6 +33,16 @@ namespace UMS.BL
             regSubject = new List<Subject>();
             regDegree = null;
         }
+        public Student (string name , int age , int fscMarks , int ecatMarks)
+        {
+            this.name = name;
+            this.age = age;
+            this.fscMarks = fscMarks;
+            this.ecatMarks = ecatMarks;
+            preferences = new List<DegreeProgram>();
+            regSubject = new List<Subject>();
+            regDegree = null;
+        }
         public void addPreference (DegreeProgram d)
         {
             preferences.Add(d);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UMS.BL;
+using System.IO;
 namespace UMS.DL
 {
     class SubjectDL
@@ -13,17 +14,47 @@ namespace UMS.DL
         {
             subjectsList.Add(s);
         }
-        public static bool isSubjectRegistered (Student stu , string code)
+        public static Subject isSubjectExists (string type)
         {
             foreach (Subject s in subjectsList)
             {
-                if (s.code == code && !(stu.regSubject.Contains(s)))
+                if (s.type == type)
                 {
-                    stu.regStudentSubject(s);
-                    return true;
+                    return s;
                 }
             }
-            return false;
+            return null;
+        }
+        public static void storeIntoFile (string path , Subject s)
+        {
+            StreamWriter f = new StreamWriter(path , true);
+            f.WriteLine(s.code + "," + s.type + "," + s.creditHours + "," + s.subjectFee);
+            f.Flush();
+            f.Close();
+        }
+        public static bool loadIntoFile (string path)
+        {
+            StreamReader f = new StreamReader(path);
+            string record;
+            if (File.Exists(path))
+            {
+                while ((record = f.ReadLine()) != null)
+                {
+                    string[] splittedRecord = record.Split(',');
+                    string code = splittedRecord[0];
+                    string type = splittedRecord[1];
+                    int creditHours = int.Parse(splittedRecord[2]);
+                    int subjectFee = int.Parse(splittedRecord[3]);
+                    Subject s = new Subject(code , type , creditHours , subjectFee);
+                    addSubjectIntoList(s);
+                }
+                f.Close();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

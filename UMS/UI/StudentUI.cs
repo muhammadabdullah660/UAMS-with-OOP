@@ -111,7 +111,7 @@ namespace UMS.UI
                 Console.WriteLine("Enter Subject Code");
                 string code = Console.ReadLine();
                 Student stu = StudentDL.isStudentPresent(name);
-                bool registered = SubjectDL.isSubjectRegistered(stu , code);
+                bool registered = SubjectDL.isSubjectRegistered(stu , code , stu.regDegree);
                 if (registered)
                 {
                     Console.WriteLine("Subject Registered");
