@@ -9,7 +9,7 @@ namespace UMS.UI
 {
     class SubjectUI
     {
-        public static void subjectsInfo (DegreeProgram d)
+        public static Subject subjectsInfo ()
         {
             Console.WriteLine("Enter Subject Code:");
             string code = (Console.ReadLine());
@@ -20,8 +20,8 @@ namespace UMS.UI
             Console.WriteLine("Enter Subject Fee:");
             int fee = int.Parse(Console.ReadLine());
             Subject s = new Subject(code , type , ch , fee);
-            d.addSubject(s);
-            SubjectDL.addSubjectIntoList(s);
+            return s;
+
         }
     }
 }

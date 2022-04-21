@@ -38,18 +38,7 @@ namespace UMS.DL
             }
             return null;
         }
-        public static bool isSubjectRegistered (Student stu , string code , DegreeProgram regDegree)
-        {
-            foreach (Subject s in stu.regDegree.subjectsList)
-            {
-                if (s.code == code && !(stu.regSubject.Contains(s)))
-                {
-                    stu.regStudentSubject(s);
-                    return true;
-                }
-            }
-            return false;
-        }
+
         public static void viewALLOfferedPrograms ()
         {
             Console.WriteLine("Available Programs:");
@@ -77,7 +66,7 @@ namespace UMS.DL
             f.Flush();
             f.Close();
         }
-        public static bool loadIntoFile (string path)
+        public static bool loadFromFile (string path)
         {
             StreamReader f = new StreamReader(path);
             string record;
@@ -89,7 +78,7 @@ namespace UMS.DL
                     string degreeTitle = splittedRecord[0];
                     double degreeDuration = double.Parse(splittedRecord[1]);
                     int seats = int.Parse(splittedRecord[2]);
-                    string[] splittedRecordSub = record.Split(';');
+                    string[] splittedRecordSub = splittedRecord[3].Split(';');
                     DegreeProgram d = new DegreeProgram(degreeTitle , degreeDuration);
                     d.seats = seats;
                     for (int i = 0 ; i < splittedRecordSub.Length ; i++)

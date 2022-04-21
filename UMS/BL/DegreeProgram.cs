@@ -63,6 +63,17 @@ namespace UMS.BL
             }
             return false;
         }
-
+        public static bool isSubjectRegistered (Student stu , string code , DegreeProgram regDegree)
+        {
+            foreach (Subject s in stu.regDegree.subjectsList)
+            {
+                if (s.code == code && !(stu.regSubject.Contains(s)))
+                {
+                    stu.regStudentSubject(s);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

@@ -40,7 +40,7 @@ namespace UMS.DL
         {
             registeredStudentsList.Add(s);
         }
-        public static bool loadIntoFile (string path)
+        public static bool loadFromFile (string path)
         {
             StreamReader f = new StreamReader(path);
             string record;
@@ -53,7 +53,7 @@ namespace UMS.DL
                     int age = int.Parse(splittedRecord[1]);
                     int fscMarks = int.Parse(splittedRecord[2]);
                     int ecatMarks = int.Parse(splittedRecord[3]);
-                    string[] splittedRecordPref = record.Split(';');
+                    string[] splittedRecordPref = splittedRecord[4].Split(';');
                     Student s = new Student(name , age , fscMarks , ecatMarks);
                     for (int i = 0 ; i < splittedRecordPref.Length ; i++)
                     {
@@ -61,7 +61,9 @@ namespace UMS.DL
                         if (d != null)
                         {
                             s.addPreference(d);
+
                         }
+
                     }
                     addStudentIntoList(s);
                 }

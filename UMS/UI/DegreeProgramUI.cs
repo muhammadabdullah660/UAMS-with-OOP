@@ -33,7 +33,24 @@ namespace UMS.UI
             // Subjects List
             for (int i = 0 ; i < subCount ; i++)
             {
-                SubjectUI.subjectsInfo(d);
+                Subject s = SubjectUI.subjectsInfo();
+                if (d.addSubject(s))
+                {
+                    // These are done here because we did not add a separate option to add only the Subjects.
+                    if (!(SubjectDL.subjectsList.Contains(s)))
+                    {
+                        SubjectDL.addSubjectIntoList(s);
+                        SubjectDL.storeIntoFile("subject.txt" , s);
+                    }
+
+                    Console.WriteLine("Subject Added");
+                }
+                else
+                {
+                    Console.WriteLine("Subject Not Added");
+                    Console.WriteLine("20 credit hour limit exceeded");
+                    i--;
+                }
             }
             return d;
         }

@@ -3,7 +3,7 @@
   <Class Name="UMS.BL.DegreeProgram">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgIAQEAAAAAAAIAAAAAAIAAAAAAAAAAAEAAACABIA=</HashCode>
+      <HashCode>IAAgIAQEAAAAAAAIAAAAAAIAAAAAAAAAAAEAAACABIA=</HashCode>
       <FileName>BL\DegreeProgram.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -24,43 +24,50 @@
   <Class Name="UMS.DL.DegreeProgramDL">
     <Position X="0.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAABAAARAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAABIAAAAAAAAAAAABAAAAAAABAAARAAAAQAAAAAAA=</HashCode>
       <FileName>DL\DegreeProgramDL.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UMS.DL.StudentDL">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ADABAACQCAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ADABAACQCAAAAAIAAABAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
       <FileName>DL\StudentDL.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UMS.DL.SubjectDL">
     <Position X="5.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAEAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAEAAEAAAAAAABAAAAAAAAAAAAAAAAQAACAAAA=</HashCode>
       <FileName>DL\SubjectDL.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UMS.UI.DegreeProgramUI">
-    <Position X="0.5" Y="6.25" Width="1.5" />
+    <Position X="0.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>UI\DegreeProgramUI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UMS.UI.StudentUI">
-    <Position X="4" Y="3.25" Width="1.5" />
+    <Position X="4" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAABAIAACAAAAAAAAAAAAAAAAAAgIAAAEAA=</HashCode>
       <FileName>UI\StudentUI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UMS.UI.SubjectUI">
-    <Position X="5.75" Y="4.75" Width="1.5" />
+    <Position X="5.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>UI\SubjectUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UMS.UI.MenuUI">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\MenuUI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

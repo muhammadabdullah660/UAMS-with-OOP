@@ -52,6 +52,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\DegreeProgramUI.cs" />
+    <Compile Include="UI\MenuUI.cs" />
     <Compile Include="UI\StudentUI.cs" />
     <Compile Include="UI\SubjectUI.cs" />
   </ItemGroup>

@@ -111,16 +111,26 @@ namespace UMS.UI
                 Console.WriteLine("Enter Subject Code");
                 string code = Console.ReadLine();
                 Student stu = StudentDL.isStudentPresent(name);
-                bool registered = SubjectDL.isSubjectRegistered(stu , code , stu.regDegree);
-                if (registered)
+                if (stu != null)
                 {
-                    Console.WriteLine("Subject Registered");
+                    bool registered = DegreeProgram.isSubjectRegistered(stu , code , stu.regDegree);
+                    if (registered)
+                    {
+                        Console.WriteLine("Subject Registered");
+                    }
+                    else
+                    {
+                        Console.WriteLine("A student cannot have more than 9 subjects or wrong code");
+                        i--;
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("Enter Valid Code");
+                    Console.WriteLine("Enter Valid name");
+                    break;
                     i--;
                 }
+
             }
 
         }

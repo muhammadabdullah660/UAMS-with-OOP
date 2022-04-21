@@ -32,7 +32,7 @@ namespace UMS.DL
             f.Flush();
             f.Close();
         }
-        public static bool loadIntoFile (string path)
+        public static bool loadFromFile (string path)
         {
             StreamReader f = new StreamReader(path);
             string record;
