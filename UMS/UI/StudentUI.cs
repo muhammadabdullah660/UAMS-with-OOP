@@ -57,19 +57,19 @@ namespace UMS.UI
         public static void showMerit ()
         {
 
-            foreach (Student item in StudentDL.studentList)
+            foreach (Student item in StudentDL.getStudentList())
             {
                 if (item.isGotAdmission())
                 {
-                    if (!(StudentDL.registeredStudentsList.Contains(item)))
+                    if (!(StudentDL.getRegisteredStudentsList().Contains(item)))
                     {
                         StudentDL.addIntoRegStuList(item);
                     }
-                    Console.WriteLine($"{item.name} GOT ADMISSION IN {item.admPref.degreeTitle}");
+                    Console.WriteLine($"{item.getName()} GOT ADMISSION IN {item.getadmPref().getDegreeTitle()}");
                 }
                 else
                 {
-                    Console.WriteLine($"{item.name} DID NOT GOT ADMISSION IN {item.admPref.degreeTitle}");
+                    Console.WriteLine($"{item.getName()} DID NOT GOT ADMISSION IN {item.getadmPref().getDegreeTitle()}");
 
                 }
             }
@@ -78,12 +78,12 @@ namespace UMS.UI
         {
             /*foreach (Student item in Student.studentList)
             {
-                Console.WriteLine($"{item.name} ");
+                Console.WriteLine($"{item.getName()} ");
             }*/
             Console.WriteLine("NAME\tFSC\tECAT\tAGE");
-            foreach (Student s in StudentDL.registeredStudentsList)
+            foreach (Student s in StudentDL.getRegisteredStudentsList())
             {
-                Console.WriteLine($"{s.name}\t{s.fscMarks}\t{s.ecatMarks}\t{s.age}");
+                Console.WriteLine($"{s.getName()}\t{s.getFscMarks()}\t{s.getEcatMarks()}\t{s.getAge()}");
             }
         }
         public static void showRegStudentsSpecificProg ()
@@ -91,11 +91,11 @@ namespace UMS.UI
             Console.WriteLine("Enter Degree Name");
             string degreeName = Console.ReadLine();
             Console.WriteLine("NAME\tFSC\tECAT\tAGE");
-            foreach (Student s in StudentDL.registeredStudentsList)
+            foreach (Student s in StudentDL.getRegisteredStudentsList())
             {
-                if (degreeName == s.regDegree.degreeTitle)
+                if (degreeName == s.getRegDegree().getDegreeTitle())
                 {
-                    Console.WriteLine($"{s.name}\t{s.fscMarks}\t{s.ecatMarks}\t{s.age}");
+                    Console.WriteLine($"{s.getName()}\t{s.getFscMarks()}\t{s.getEcatMarks()}\t{s.getAge()}");
                 }
 
             }
@@ -113,7 +113,8 @@ namespace UMS.UI
                 Student stu = StudentDL.isStudentPresent(name);
                 if (stu != null)
                 {
-                    bool registered = DegreeProgram.isSubjectRegistered(stu , code , stu.regDegree);
+                    DegreeProgram regDegree = stu.getRegDegree();
+                    bool registered = DegreeProgram.isSubjectRegistered(stu , code , regDegree);
                     if (registered)
                     {
                         Console.WriteLine("Subject Registered");
@@ -138,10 +139,10 @@ namespace UMS.UI
         {
             int fee;
             Console.WriteLine("NAME\tFSC\tECAT\tAGE\tTotal Fee");
-            foreach (Student s in StudentDL.registeredStudentsList)
+            foreach (Student s in StudentDL.getRegisteredStudentsList())
             {
                 fee = s.calculateFee();
-                Console.WriteLine($"{s.name}\t{s.fscMarks}\t{s.ecatMarks}\t{s.age}\t{fee}");
+                Console.WriteLine($"{s.getName()}\t{s.getFscMarks()}\t{s.getEcatMarks()}\t{s.getAge()}\t{fee}");
 
             }
         }

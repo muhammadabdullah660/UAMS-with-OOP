@@ -1,70 +1,101 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="UMS.BL.DegreeProgram">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>IAAgIAQEAAAAAAAIAAAAAAIAAAAAAAAAAAEAAACABIA=</HashCode>
+      <HashCode>IAAgIAQEAEAACAiKIBAAAQIAQAAAAIAAAAEAAACABAA=</HashCode>
       <FileName>BL\DegreeProgram.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="regStudentsList" />
+      <Field Name="subjectsList" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="UMS.BL.Student">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Position X="5.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAQAIAAAAAQAAIAAAAAEACYAAEBABAEgAAAAAAAAI=</HashCode>
+      <HashCode>AIAAwkIAAAAAQAAKaIAEAGgCYAAEDABEEgAEAECAAAI=</HashCode>
       <FileName>BL\Student.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="admPref" />
+      <Field Name="regDegree" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="preferences" />
+      <Field Name="regSubject" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="UMS.BL.Subject">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+    <Position X="10" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAAAAAAAAAAAAQAAAIAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AIAQCQAQAAAAAAAAAAAAQABAIRAFAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BL\Subject.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UMS.DL.DegreeProgramDL">
-    <Position X="0.5" Y="4" Width="1.5" />
+    <Position X="2.75" Y="6" Width="1.75" />
+    <AssociationLine Name="degreeProgList" Type="UMS.BL.DegreeProgram" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.406" Y="6" />
+        <Point X="4.406" Y="5.564" />
+        <Point X="1.625" Y="5.564" />
+        <Point X="1.625" Y="5.324" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAABIAAAAAAAAAAAABAAAAAAABAAARAAAAQAAAAAAA=</HashCode>
+      <HashCode>AAAABIAAAAAAAAAAAABAAAAAAABAAARAAAAQQAAAAAA=</HashCode>
       <FileName>DL\DegreeProgramDL.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="degreeProgList" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="UMS.DL.StudentDL">
-    <Position X="4" Y="0.5" Width="1.5" />
+    <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ADABAACQCAAAAAIAAABAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <HashCode>ADABAAKQCIAAAAIAAABAABAAAAAAAAAAAAAQAAAAAAA=</HashCode>
       <FileName>DL\StudentDL.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="registeredStudentsList" />
+      <Field Name="sortedStudentList" />
+      <Field Name="studentList" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="UMS.DL.SubjectDL">
-    <Position X="5.75" Y="2.75" Width="1.5" />
+    <Position X="7.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAEAAEAAAAAAABAAAAAAAAAAAAAAAAQAACAAAA=</HashCode>
+      <HashCode>AAAAAAAEAAEAAAAAAABAAAAAQAAAAAAAAAAQAACAAAA=</HashCode>
       <FileName>DL\SubjectDL.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="subjectsList" />
+    </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="UMS.UI.DegreeProgramUI">
-    <Position X="0.5" Y="6.75" Width="1.5" />
+  <Class Name="UMS.UI.DegreeProgramUI" Collapsed="true">
+    <Position X="8.5" Y="10.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>UI\DegreeProgramUI.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="UMS.UI.StudentUI">
-    <Position X="4" Y="3.75" Width="1.5" />
+  <Class Name="UMS.UI.StudentUI" Collapsed="true">
+    <Position X="11.75" Y="11" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAABAIAACAAAAAAAAAAAAAAAAAAgIAAAEAA=</HashCode>
       <FileName>UI\StudentUI.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="UMS.UI.SubjectUI">
-    <Position X="5.75" Y="5.25" Width="1.5" />
+  <Class Name="UMS.UI.SubjectUI" Collapsed="true">
+    <Position X="11.75" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>UI\SubjectUI.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="UMS.UI.MenuUI">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+  <Class Name="UMS.UI.MenuUI" Collapsed="true">
+    <Position X="9.5" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
       <FileName>UI\MenuUI.cs</FileName>

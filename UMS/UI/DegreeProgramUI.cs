@@ -26,7 +26,8 @@ namespace UMS.UI
             degreeSeats = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Merit for degree:");
             degreeMerit = double.Parse(Console.ReadLine());
-            d.addSeatsAndMerit(degreeSeats , degreeMerit);
+            d.setMerit(degreeMerit);
+            d.setSeats(degreeSeats);
             // Subjects
             Console.WriteLine("Enter How many subjects to enter:");
             subCount = int.Parse(Console.ReadLine());
@@ -37,7 +38,7 @@ namespace UMS.UI
                 if (d.addSubject(s))
                 {
                     // These are done here because we did not add a separate option to add only the Subjects.
-                    if (!(SubjectDL.subjectsList.Contains(s)))
+                    if (!(SubjectDL.getSubjectsList().Contains(s)))
                     {
                         SubjectDL.addSubjectIntoList(s);
                         SubjectDL.storeIntoFile("subject.txt" , s);

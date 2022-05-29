@@ -9,7 +9,11 @@ namespace UMS.DL
 {
     class SubjectDL
     {
-        public static List<Subject> subjectsList = new List<Subject>();
+        private static List<Subject> subjectsList = new List<Subject>();
+        public static List<Subject> getSubjectsList ()
+        {
+            return subjectsList;
+        }
         public static void addSubjectIntoList (Subject s)
         {
             subjectsList.Add(s);
@@ -18,7 +22,7 @@ namespace UMS.DL
         {
             foreach (Subject s in subjectsList)
             {
-                if (s.type == type)
+                if (s.getType() == type)
                 {
                     return s;
                 }
@@ -28,7 +32,7 @@ namespace UMS.DL
         public static void storeIntoFile (string path , Subject s)
         {
             StreamWriter f = new StreamWriter(path , true);
-            f.WriteLine(s.code + "," + s.type + "," + s.creditHours + "," + s.subjectFee);
+            f.WriteLine(s.getCode() + "," + s.getType() + "," + s.getCreditHours() + "," + s.getSubjectFee());
             f.Flush();
             f.Close();
         }

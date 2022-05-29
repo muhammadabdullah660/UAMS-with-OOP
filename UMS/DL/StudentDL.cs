@@ -10,22 +10,34 @@ namespace UMS.DL
 {
     class StudentDL
     {
-        public static List<Student> studentList = new List<Student>();
-        public static List<Student> sortedStudentList = new List<Student>();
-        public static List<Student> registeredStudentsList = new List<Student>();
+        private static List<Student> studentList = new List<Student>();
+        private static List<Student> sortedStudentList = new List<Student>();
+        private static List<Student> registeredStudentsList = new List<Student>();
+        public static List<Student> getStudentList ()
+        {
+            return studentList;
+        }
+        public static List<Student> getRegisteredStudentsList ()
+        {
+            return registeredStudentsList;
+        }
+        public static List<Student> getSortedStudentList ()
+        {
+            return sortedStudentList;
+        }
         public static void sortStudentsByMerit ()
         {
             foreach (Student s in registeredStudentsList)
             {
                 s.calculateMerit();
             }
-            sortedStudentList = registeredStudentsList.OrderByDescending(o => o.merit).ToList();
+            sortedStudentList = registeredStudentsList.OrderByDescending(o => o.getMerit()).ToList();
         }
         public static Student isStudentPresent (string name)
         {
             foreach (Student s in studentList)
             {
-                if (name == s.name && s.isGotAdmission())
+                if (name == s.getName() && s.isGotAdmission())
                 {
                     return s;
                 }
@@ -79,20 +91,51 @@ namespace UMS.DL
         {
             StreamWriter f = new StreamWriter(path , true);
             string degreeName = "";
-            for (int i = 0 ; i < s.preferences.Count ; i++)
+            for (int i = 0 ; i < s.getPreferences().Count ; i++)
             {
-                if (i != s.preferences.Count - 1)
+                if (i != s.getPreferences().Count - 1)
                 {
-                    degreeName += s.preferences[i].degreeTitle + ";";
+                    degreeName += s.getPreferences()[i].getDegreeTitle() + ";";
                 }
                 else
                 {
-                    degreeName += s.preferences[i].degreeTitle;
+                    degreeName += s.getPreferences()[i].getDegreeTitle();
                 }
             }
-            f.WriteLine(s.name + "," + s.age + "," + s.fscMarks + "," + s.ecatMarks + "," + degreeName);
+            /* string subName = "";
+             for (int i = 0 ; i < s.getRegSubject().Count ; i++)
+             {
+                 if (i != s.getRegSubject().Count - 1)
+                 {
+                     subName += s.getRegSubject()[i].getCode() + ":";
+                 }
+                 else
+                 {
+                     subName += s.getRegSubject()[i].getCode();
+                 }
+             }*/
+            f.WriteLine(s.getName() + "," + s.getAge() + "," + s.getFscMarks() + "," + s.getEcatMarks() + "," + degreeName);
             f.Flush();
             f.Close();
         }
+        /* public static void storeIntoFileSub (string path , Student s)
+         {
+             StreamWriter f = new StreamWriter(path , true);
+             string subName = "";
+             for (int i = 0 ; i < s.getRegSubject().Count ; i++)
+             {
+                 if (i != s.getRegSubject().Count - 1)
+                 {
+                     subName += s.getRegSubject()[i].getCode() + ":";
+                 }
+                 else
+                 {
+                     subName += s.getRegSubject()[i].getCode();
+                 }
+             }
+             f.WriteLine(s.getName() + "," + s.getAge() + "," + s.getFscMarks() + "," + s.getEcatMarks() + "," + s.isGotAdmission() + "," + degreeName + "," + subName);
+             f.Flush();
+             f.Close();
+         }*/
     }
 }

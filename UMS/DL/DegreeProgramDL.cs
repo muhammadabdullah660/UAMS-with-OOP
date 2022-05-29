@@ -10,8 +10,11 @@ namespace UMS.DL
 {
     class DegreeProgramDL
     {
-        public static List<DegreeProgram> degreeProgList = new List<DegreeProgram>();
-
+        private static List<DegreeProgram> degreeProgList = new List<DegreeProgram>();
+        public static List<DegreeProgram> getDegreeProgList ()
+        {
+            return degreeProgList;
+        }
         public static void addDegreeIntoList (DegreeProgram d)
         {
             degreeProgList.Add(d);
@@ -20,7 +23,7 @@ namespace UMS.DL
         {
             foreach (DegreeProgram d in degreeProgList)
             {
-                if (d.degreeTitle == degreeName)
+                if (d.getDegreeTitle() == degreeName)
                 {
                     return d;
                 }
@@ -31,7 +34,7 @@ namespace UMS.DL
         {
             foreach (DegreeProgram item in degreeProgList)
             {
-                if (item.degreeTitle == degreeName)
+                if (item.getDegreeTitle() == degreeName)
                 {
                     return item;
                 }
@@ -44,25 +47,25 @@ namespace UMS.DL
             Console.WriteLine("Available Programs:");
             foreach (DegreeProgram item in degreeProgList)
             {
-                Console.WriteLine(item.degreeTitle);
+                Console.WriteLine(item.getDegreeTitle());
             }
         }
         public static void storeIntoFile (string path , DegreeProgram d)
         {
             StreamWriter f = new StreamWriter(path , true);
             string subjectName = "";
-            for (int i = 0 ; i < d.subjectsList.Count ; i++)
+            for (int i = 0 ; i < d.getSubjectsList().Count ; i++)
             {
-                if (i != d.subjectsList.Count - 1)
+                if (i != d.getSubjectsList().Count - 1)
                 {
-                    subjectName += d.subjectsList[i].type + ";";
+                    subjectName += d.getSubjectsList()[i].getType() + ";";
                 }
                 else
                 {
-                    subjectName += d.subjectsList[i].type;
+                    subjectName += d.getSubjectsList()[i].getType();
                 }
             }
-            f.WriteLine(d.degreeTitle + "," + d.degreeDuration + "," + d.seats + "," + subjectName);
+            f.WriteLine(d.getDegreeTitle() + "," + d.getDegreeDuration() + "," + d.getSeats() + "," + subjectName);
             f.Flush();
             f.Close();
         }
@@ -80,7 +83,7 @@ namespace UMS.DL
                     int seats = int.Parse(splittedRecord[2]);
                     string[] splittedRecordSub = splittedRecord[3].Split(';');
                     DegreeProgram d = new DegreeProgram(degreeTitle , degreeDuration);
-                    d.seats = seats;
+                    d.setSeats(seats);
                     for (int i = 0 ; i < splittedRecordSub.Length ; i++)
                     {
                         Subject s = SubjectDL.isSubjectExists(splittedRecordSub[i]);

@@ -8,20 +8,16 @@ namespace UMS.BL
 {
     class Student
     {
-        public string name;
-        public int age;
-        public int fscMarks;
-        public int matricMarks;
-        public int ecatMarks;
-        public double merit;
-        public List<DegreeProgram> preferences;
-        public List<Subject> regSubject;
-        public DegreeProgram admPref;
-        public DegreeProgram regDegree;
-
-
-
-
+        private string name;
+        private int age;
+        private int fscMarks;
+        private int matricMarks;
+        private int ecatMarks;
+        private double merit;
+        private List<DegreeProgram> preferences;
+        private List<Subject> regSubject;
+        private DegreeProgram admPref;
+        private DegreeProgram regDegree;
         public Student (string name , int age , int fscMarks , int matricMarks , int ecatMarks)
         {
             this.name = name;
@@ -43,6 +39,88 @@ namespace UMS.BL
             regSubject = new List<Subject>();
             regDegree = null;
         }
+        public string getName ()
+        {
+            return name;
+        }
+        public int getAge ()
+        {
+            return age;
+        }
+        public int getFscMarks ()
+        {
+            return fscMarks;
+        }
+        public int getMatricMarks ()
+        {
+            return matricMarks;
+        }
+        public int getEcatMarks ()
+        {
+            return ecatMarks;
+        }
+        public double getMerit ()
+        {
+            return merit;
+        }
+        public List<DegreeProgram> getPreferences ()
+        {
+            return preferences;
+        }
+        public List<Subject> getRegSubject ()
+        {
+            return regSubject;
+        }
+        public DegreeProgram getadmPref ()
+        {
+            return admPref;
+        }
+        public DegreeProgram getRegDegree ()
+        {
+            return regDegree;
+        }
+        public void setName (string name)
+        {
+            this.name = name;
+        }
+        public void setAge (int age)
+        {
+            this.age = age;
+        }
+        public void setFscMarks (int fscMarks)
+        {
+            this.fscMarks = fscMarks;
+        }
+        public void setMatricMarks (int matricMarks)
+        {
+            this.matricMarks = matricMarks;
+        }
+        public void setEcatMarks (int ecatMarks)
+        {
+            this.ecatMarks = ecatMarks;
+        }
+
+        public void setMerit (double merit)
+        {
+            this.merit = merit;
+        }
+        public void setPreferences (List<DegreeProgram> preferences)
+        {
+            this.preferences = preferences;
+        }
+        public void setRegSubject (List<Subject> regSubject)
+        {
+            this.regSubject = regSubject;
+        }
+        public void setadmPref (DegreeProgram admPref)
+        {
+            this.admPref = admPref;
+        }
+        public void setRegDegree (DegreeProgram regDegree)
+        {
+            this.regDegree = regDegree;
+        }
+
         public void addPreference (DegreeProgram d)
         {
             preferences.Add(d);
@@ -53,7 +131,7 @@ namespace UMS.BL
             //    Console.WriteLine(regSubject.Count);
             for (int i = 0 ; i < regSubject.Count ; i++)
             {
-                ch += regSubject[i].creditHours;
+                ch += regSubject[i].getCreditHours();
                 //  Console.WriteLine(ch);
                 //Console.WriteLine(regSubject[i].creditHours);
 
@@ -69,7 +147,7 @@ namespace UMS.BL
             {
                 foreach (Subject sub in regSubject)
                 {
-                    fee += sub.subjectFee;
+                    fee += sub.getSubjectFee();
                 }
             }
             // int studentFee = getCreditHours() * 3000;
@@ -89,7 +167,7 @@ namespace UMS.BL
         public bool regStudentSubject (Subject s)
         {
             int stCH = getCreditHours();
-            if (regDegree != null && preferences[0].isSubjectExist(s) && stCH + s.creditHours <= 9)
+            if (regDegree != null && preferences[0].isSubjectExist(s) && stCH + s.getCreditHours() <= 9)
             {
                 regSubject.Add(s);
                 return true;
@@ -106,13 +184,15 @@ namespace UMS.BL
             double merit = calculateMerit();
             for (int i = 0 ; i < preferences.Count ; i++)
             {
-                if (preferences[i].merit <= merit)
+                if (preferences[i].getMerit() <= merit)
                 {
                     DegreeProgram temp = preferences[0];
                     preferences[0] = preferences[i];
                     admPref = preferences[0];
                     regDegree = preferences[0];
-                    preferences[0].seats--;
+                    int seats = preferences[0].getSeats();
+                    seats--;
+                    preferences[0].setSeats(seats);
                     return true;
                 }
             }

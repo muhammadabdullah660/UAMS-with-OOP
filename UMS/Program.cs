@@ -46,7 +46,7 @@ namespace UMS
                 if (op == 1)
                 {
                     MenuUI.clearScreen();
-                    if (DegreeProgramDL.degreeProgList.Count > 0)
+                    if (DegreeProgramDL.getDegreeProgList().Count > 0)
                     {
                         MenuUI.header();
                         Student s = StudentUI.takeInputStudent();

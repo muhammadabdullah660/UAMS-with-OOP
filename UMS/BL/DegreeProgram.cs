@@ -8,12 +8,12 @@ namespace UMS.BL
 {
     class DegreeProgram
     {
-        public string degreeTitle;
-        public double degreeDuration;
-        public List<Subject> subjectsList;
-        public double merit;
-        public int seats;
-        public List<Student> regStudentsList;
+        private string degreeTitle;
+        private double degreeDuration;
+        private double merit;
+        private int seats;
+        private List<Subject> subjectsList;
+        private List<Student> regStudentsList;
 
 
         public DegreeProgram (string degreeTitle , double degreeDuration)
@@ -23,25 +23,72 @@ namespace UMS.BL
             subjectsList = new List<Subject>();
 
         }
+        //GETTERS
+        public string getDegreeTitle ()
+        {
+            return degreeTitle;
+        }
+        public double getDegreeDuration ()
+        {
+            return degreeDuration;
+        }
+        public double getMerit ()
+        {
+            return merit;
+        }
+        public int getSeats ()
+        {
+            return seats;
+        }
+        public List<Subject> getSubjectsList ()
+        {
+            return subjectsList;
+        }
+        public List<Student> getRegStudentsList ()
+        {
+            return regStudentsList;
+        }
 
-        public void addSeatsAndMerit (int seats , double merit)
+        //SETTERS
+        public void setDegreeTitle (string degreeTitle)
+        {
+            this.degreeTitle = degreeTitle;
+        }
+
+        public void getSubjectsList (List<Subject> subjectsList)
+        {
+            this.subjectsList = subjectsList;
+        }
+        public void getRegStudentsList (List<Student> regStudentsList)
+        {
+            this.regStudentsList = regStudentsList;
+        }
+        public void setSeats (int seats)
         {
             this.seats = seats;
+        }
+        public void setMerit (double merit)
+        {
             this.merit = merit;
         }
+        public void setDegreeDuration (double degreeDuration)
+        {
+            this.degreeDuration = degreeDuration;
+        }
+        //Behaviours
         public int calculateCreditHours ()
         {
             int count = 0;
             for (int i = 0 ; i < subjectsList.Count ; i++)
             {
-                count += subjectsList[i].creditHours;
+                count += subjectsList[i].getCreditHours();
             }
             return count;
         }
         public bool addSubject (Subject s)
         {
             int creditHrs = calculateCreditHours();
-            if (creditHrs + s.creditHours <= 20)
+            if (creditHrs + s.getCreditHours() <= 20)
             {
                 subjectsList.Add(s);
                 return true;
@@ -56,7 +103,7 @@ namespace UMS.BL
         {
             foreach (Subject sub in subjectsList)
             {
-                if (s.code == sub.code)
+                if (s.getCode() == sub.getCode())
                 {
                     return true;
                 }
@@ -65,9 +112,9 @@ namespace UMS.BL
         }
         public static bool isSubjectRegistered (Student stu , string code , DegreeProgram regDegree)
         {
-            foreach (Subject s in stu.regDegree.subjectsList)
+            foreach (Subject s in stu.getRegDegree().subjectsList)
             {
-                if (s.code == code && !(stu.regSubject.Contains(s)))
+                if (s.getCode() == code && !(stu.getRegSubject().Contains(s)))
                 {
                     stu.regStudentSubject(s);
                     return true;
